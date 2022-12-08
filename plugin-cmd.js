@@ -2,7 +2,7 @@
 const { segment } = require("oicq")
 const { bot } = require("./index")
 
-// 私聊
+// 所有消息
 bot.on("message", function (msg) {
 	if (msg.raw_message[0] == "/") {
 		let cmd = msg.raw_message.split(" ")[0].slice(1)
