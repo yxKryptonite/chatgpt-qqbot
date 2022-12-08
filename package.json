@@ -12,6 +12,7 @@
     "oicq": "^2.2.0"
   },
   "devDependencies": {
-    "@types/node": "^16.6.1"
+    "@types/node": "^16.6.1",
+    "js-yaml": "^4.1.0"
   }
 }
