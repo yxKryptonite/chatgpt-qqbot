@@ -106,3 +106,5 @@ dist
 data
 config.yml
 learn.js
+__pycache__/
+package-lock.json
