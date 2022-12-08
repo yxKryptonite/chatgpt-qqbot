@@ -1,13 +1,11 @@
-### ChatGPT QQBot
+# ChatGPT QQBot
 
-**Usage:**
+## Usage
 
 1. 安装 [Node.js](https://nodejs.org/) 14以上版本  
-2. clone到本地并执行 `npm i` 安装依赖
-3. 将 index.js 第二行 `const account = 0` 中的0改为你自己的账号
+2. clone到本地并执行 `npm i` 和 `pip install -r requirements.txt` 安装依赖
+3. 创建 `config.yml` ，填入你的QQ号和 session token。
 4. 执行 `npm run dev` 启动程序
-
-----
 
 Thanks for [OICQ template](https://github.com/takayama-lily/oicq-template).
 

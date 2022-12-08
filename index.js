@@ -1,8 +1,11 @@
 "use strict"
 const { createClient } = require("oicq")
-// 
+// open config.yml
+const fs = require("fs")
+const yaml = require("js-yaml")
+const config = yaml.safeLoad(fs.readFileSync("config.yml", "utf8"))
 
-const account = 2040732780
+const account = config.account
 
 const bot = createClient(account)
 
