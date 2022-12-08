@@ -14,6 +14,11 @@ const { bot } = require("./index")
  * - /translate: 翻译
  * - /weather: 查询天气
  * - /help: 显示帮助
+ * - 多模态信息，如
+ * 		- /image: 发送图片
+ * 		- /video: 发送视频
+ * 		- /diffusion: 调用 Stable Diffusion 文本生成图片
+ * 		- 根据图片生成文本 (CNN/ViT + GPT)
  * - 其他...
  */
 
