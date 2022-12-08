@@ -1,6 +1,4 @@
-### [oicq](https://github.com/takayama-lily/oicq) template
-
-----
+### ChatGPT QQBot
 
 **Usage:**
 
@@ -8,6 +6,10 @@
 2. clone到本地并执行 `npm i` 安装依赖
 3. 将 index.js 第二行 `const account = 0` 中的0改为你自己的账号
 4. 执行 `npm run dev` 启动程序
+
+----
+
+Thanks for [OICQ template](https://github.com/takayama-lily/oicq-template).
 
 ----
 

@@ -1,7 +1,8 @@
 "use strict"
 const { createClient } = require("oicq")
+// 
 
-const account = 0
+const account = 2040732780
 
 const bot = createClient(account)
 
@@ -21,6 +22,7 @@ require("./plugin-hello") //hello world
 require("./plugin-image") //发送图文和表情
 require("./plugin-request") //加群和好友
 require("./plugin-online") //监听上线事件
+require("./plugin-cmd") //命令行
 
 process.on("unhandledRejection", (reason, promise) => {
 	console.log('Unhandled Rejection at:', promise, 'reason:', reason)
