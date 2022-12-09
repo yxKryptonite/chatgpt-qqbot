@@ -1,6 +1,7 @@
 "use strict"
 import { segment } from "oicq"
 import { bot } from "../index.js"
+import { translate } from 'bing-translate-api';
 
 /* 
  * 机器人指令
@@ -57,7 +58,6 @@ bot.on("message", function (msg) {
 				let tgt = content.split(" ")[0]
 				let text = content.split(" ").slice(1).join(" ")
 				// bing-translate-api
-				const { translate } = require('bing-translate-api');
 				
 				async function getAnswer(tgt, text) {
 					let answer = await translate(text, null, tgt, true)
