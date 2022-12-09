@@ -3,23 +3,25 @@
 ## Usage
 
 1. 安装 [Node.js](https://nodejs.org/) 14以上版本  
-2. clone到本地并安装依赖
+2. clone 到本地并安装依赖
     ```bash
     npm i
     pip install -r requirements.txt
     ```
-3. 创建 `config.yml` ，填入你的 QQ 号和 session token 。形如：
+3. 创建 `config.json` ，填入你的 QQ 号和 session token 。形如：
 
-    ```yaml
-    account: 1234567890
-    session_token: example_session_token
+    ```json
+    {
+        "Account": 1234567890,
+        "SessionToken": "example_session_token"
+    }
     ```
 
     关于 session token 的获取，详见[此处](https://github.com/mbroton/chatgpt-api#how-to-acquire-session-key)。
 
 4. 执行 `npm run dev` 启动程序
 
-**注意**：该 Bot 无法长时间运行 ( `fuck httpx.Client!` )
+**注意**：该 Bot 无法长时间运行
 
 ----
 
@@ -29,4 +31,4 @@
 [5分钟上手TypeScript](https://www.tslang.cn/docs/handbook/typescript-in-5-minutes.html)  
 [优秀npm三方库集合](https://github.com/sindresorhus/awesome-nodejs) 
 
-Thanks for [OICQ template](https://github.com/takayama-lily/oicq-template).
+Thanks for the [oicq template](https://github.com/takayama-lily/oicq-template).

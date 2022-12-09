@@ -1,3 +1,2 @@
 chatgpt
 chatgpt-api
-pyyaml

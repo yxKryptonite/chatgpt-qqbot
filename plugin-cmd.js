@@ -7,9 +7,11 @@ const { bot } = require("./index")
  * 机器人指令以 / 开头
  * 机器人指令格式：/指令 内容
  * 机器人指令示例：/chatgpt 你好
- * 计划实现的指令：
- * - /chatgpt: 调用 ChatGPT 进行聊天
- * - /hole: 爬取某条树洞
+ * * 已实现的指令：
+ * - /chatgpt: 调用 ChatGPT 进行聊天 (可用 py 和 js 接口)
+ * - /chatgpt-reset: 重置 ChatGPT 对话
+ * 
+ * * 计划实现的指令：
  * - /anonymous: 在某个群聊中匿名发言
  * - /translate: 翻译
  * - /weather: 查询天气
@@ -27,24 +29,25 @@ bot.on("message", function (msg) {
 	if (msg.raw_message[0] == "/") {
 		let cmd = msg.raw_message.split(" ")[0].slice(1)
 		let content = msg.raw_message.split(" ").slice(1).join(" ")
-		// console.log("cmd: " + cmd)
-		// console.log("content: " + content)
 		switch (cmd) {
 			case "chatgpt": {
-				let command = "python3 chat.py " + content
-				const { exec } = require("child_process")
-				exec(command, (error, stdout, stderr) => {
-					if (error) {
-						console.log(`error: ${error.message}`)
-						return
-					}
-					if (stderr) {
-						console.log(`stderr: ${stderr}`)
-						return
-					}
-					msg.reply(stdout)
-				})
+				async function getAnswer(question) {
+					let answer = await bot.chatbot.ask(question);
+					msg.reply(answer);
+				}
+				getAnswer(content);
 				break
+			}
+			case "chatgpt-reset": {
+				bot.chatbot.resetThread()
+				msg.reply("已重置 ChatGPT 对话")
+			}
+			case "translate": {
+				let src_lgg = content.split(" ")[0]
+				let dst_lgg = content.split(" ")[1]
+				let text = content.split(" ").slice(2).join(" ")
+				// google-translate-api
+				
 			}
 			default: {
 				msg.reply("未知指令")

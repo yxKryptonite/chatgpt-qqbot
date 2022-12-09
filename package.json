@@ -1,7 +1,7 @@
 {
-  "name": "oicq-template",
+  "name": "chatgpt-qqbot",
   "version": "1.0.0",
-  "description": "",
+  "description": "## Usage",
   "main": "index.js",
   "scripts": {
     "dev": "node ./index.js"
@@ -9,10 +9,20 @@
   "author": "",
   "license": "MIT",
   "dependencies": {
+    "@iamtraction/google-translate": "^2.0.1",
+    "chatgpt-lib": "^0.3.0",
     "oicq": "^2.2.0"
   },
   "devDependencies": {
-    "@types/node": "^16.6.1",
-    "js-yaml": "^4.1.0"
-  }
+    "@types/node": "^16.6.1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yxKryptonite/chatgpt-qqbot.git"
+  },
+  "keywords": [],
+  "bugs": {
+    "url": "https://github.com/yxKryptonite/chatgpt-qqbot/issues"
+  },
+  "homepage": "https://github.com/yxKryptonite/chatgpt-qqbot#readme"
 }

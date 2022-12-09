@@ -1,13 +1,14 @@
 "use strict"
 const { createClient } = require("oicq")
-// open config.yml
-const fs = require("fs")
-const yaml = require("js-yaml")
-const config = yaml.load(fs.readFileSync("config.yml", "utf8"))
+// open config.json
+const config = require("./config.json")
 
-const account = config.account
+const account = config.Account
 
 const bot = createClient(account)
+const cgpt = require('chatgpt-lib');
+const chatbot = new cgpt.ChatGPT(config);
+bot.chatbot = chatbot
 
 bot
 .on("system.login.qrcode", function (e) {
