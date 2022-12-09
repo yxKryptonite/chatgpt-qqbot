@@ -12,7 +12,7 @@ const { bot } = require("../index")
  * - /chatgpt-reset: 重置 ChatGPT 对话 e.g. /chatgpt-reset
  * 
  * * 计划实现的指令：
- * - /anonymous: 在某个群聊中匿名发言
+ * - /anonymous: 在某个群聊中匿名发言 e.g. /anonymous 1234567890 这是一条匿名消息
  * - /translate: 翻译 e.g. /translate en 你好
  * - /help: 显示帮助
  * - 多模态信息，如
