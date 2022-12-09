@@ -8,13 +8,12 @@ const { bot } = require("./index")
  * 机器人指令格式：/指令 内容
  * 机器人指令示例：/chatgpt 你好
  * * 已实现的指令：
- * - /chatgpt: 调用 ChatGPT 进行聊天 (可用 py 和 js 接口)
- * - /chatgpt-reset: 重置 ChatGPT 对话
+ * - /chatgpt: 调用 ChatGPT 进行聊天 (可用 py 和 js 接口) e.g. /chatgpt 你好
+ * - /chatgpt-reset: 重置 ChatGPT 对话 e.g. /chatgpt-reset
  * 
  * * 计划实现的指令：
  * - /anonymous: 在某个群聊中匿名发言
- * - /translate: 翻译
- * - /weather: 查询天气
+ * - /translate: 翻译 e.g. /translate en 你好
  * - /help: 显示帮助
  * - 多模态信息，如
  * 		- /image: 发送图片
@@ -41,16 +40,27 @@ bot.on("message", function (msg) {
 			case "chatgpt-reset": {
 				bot.chatbot.resetThread()
 				msg.reply("已重置 ChatGPT 对话")
+				break
 			}
 			case "translate": {
-				let src_lgg = content.split(" ")[0]
-				let dst_lgg = content.split(" ")[1]
-				let text = content.split(" ").slice(2).join(" ")
-				// google-translate-api
+				// e.g. /translate en 你好
+				let tgt = content.split(" ")[0]
+				let text = content.split(" ").slice(1).join(" ")
+				// bing-translate-api
+				const { translate } = require('bing-translate-api');
 				
+				async function getAnswer(tgt, text) {
+					let answer = await translate(text, null, tgt, true)
+					msg.reply(answer.translation);
+				}
+				getAnswer(tgt, text);
+				break
 			}
 			default: {
-				msg.reply("未知指令")
+				// 群消息
+				if (msg.message_type == "group") {
+					msg.reply("未知指令")
+				}
 			}
 		}
 	}
@@ -62,7 +72,19 @@ bot.on("message.private", function (msg) {
 	if (msg.raw_message[0] == "/") {
 		let cmd = msg.raw_message.split(" ")[0].slice(1)
 		let content = msg.raw_message.split(" ").slice(1).join(" ")
-		// TODO
+		switch (cmd) {
+			case "anonymous": {
+				// console.log("anonymous")
+				// e.g. /anonymous 123456789 你好
+				let group_id = content.split(" ")[0]
+				let text = content.split(" ").slice(1).join(" ")
+				console.log(group_id, text)
+				async function send(group_id, text) {
+					await bot.sendGroupMsg(group_id, text, true)
+				}
+				send(group_id, text)
+			}
+		}
 	}
 })
 

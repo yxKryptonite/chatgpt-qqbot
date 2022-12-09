@@ -9,7 +9,7 @@
   "author": "",
   "license": "MIT",
   "dependencies": {
-    "@iamtraction/google-translate": "^2.0.1",
+    "bing-translate-api": "^2.6.0",
     "chatgpt-lib": "^0.3.0",
     "oicq": "^2.2.0"
   },
