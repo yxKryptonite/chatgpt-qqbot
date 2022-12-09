@@ -10,16 +10,15 @@
     npm i
     pip install -r requirements.txt
     ```
-3. 创建 `config.json` ，填入你的 QQ 号和 session token 。形如：
+3. 创建 `config.json` ，填入你的 QQ 号、[ChatGPT session token](https://github.com/mbroton/chatgpt-api#how-to-acquire-session-key) 以及 [DALL·E 2 bearer token](https://github.com/1998code/DALLE-2-App/issues/13) 。形如：
 
     ```json
     {
         "Account": 1234567890,
-        "SessionToken": "example_session_token"
+        "SessionToken": "example_session_token",
+        "Dalle2Token": "example_dalle2_token"
     }
     ```
-
-    关于 session token 的获取，详见[此处](https://github.com/mbroton/chatgpt-api#how-to-acquire-session-key)。
 
 4. 执行 `npm run dev` 启动程序
 
