@@ -1,5 +1,7 @@
 # ChatGPT QQBot
 
+一个基于 [oicq](https://github.com/takayama-lily/oicq) 和 [ChatGPT](https://github.com/Mix-Anik/chatgpt-lib) 的 QQ 聊天机器人。
+
 ## Usage
 
 1. 安装 [Node.js](https://nodejs.org/) 14以上版本  
