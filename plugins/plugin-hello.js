@@ -1,7 +1,8 @@
 "use strict"
-const { segment } = require("oicq")
-const { bot } = require("../index")
+import { segment } from "oicq"
+import { bot } from "../index.js"
 
+function hello() {
 // hello world
 bot.on("message", function (msg) {
 	if (msg.raw_message === "hello")
@@ -25,3 +26,7 @@ bot.on("notice.group.poke", function (e) {
 	if (e.target_id === this.uin)
 		e.group.sendMsg("dont poke me")
 })
+
+}
+
+export { hello }

@@ -1,6 +1,6 @@
 "use strict"
-const { segment } = require("oicq")
-const { bot } = require("../index")
+import { segment } from "oicq"
+import { bot } from "../index.js"
 
 /* 
  * 机器人指令
@@ -12,6 +12,7 @@ const { bot } = require("../index")
  * - /chatgpt-reset: 重置 ChatGPT 对话 e.g. /chatgpt-reset
  * - /anonymous: 私聊 Bot 实现在群聊中匿名发言 e.g. /anonymous 1234567890 这是一条匿名消息
  * - /translate: 自动识别源语言，翻译到指定语言 e.g. /translate en 你好
+ * - /draw: 调用 DALL·E 2 文本生成图片 e.g. /draw A teddy bear playing soccer at Time Square
  * - /help: 显示帮助信息
  * - /quit: 退出
  * 
@@ -19,11 +20,11 @@ const { bot } = require("../index")
  * - 多模态信息，如
  * 		- /image: 发送图片
  * 		- /video: 发送视频
- * 		- /diffusion: 调用 Stable Diffusion 文本生成图片
  * 		- 根据图片生成文本 (CNN/ViT + GPT)
  * - 其他...
  */
 
+function cmd() {
 // 所有消息
 bot.on("message", function (msg) {
 	if (msg.raw_message[0] == "/") {
@@ -31,6 +32,10 @@ bot.on("message", function (msg) {
 		let content = msg.raw_message.split(" ").slice(1).join(" ")
 		switch (cmd) {
 			case "chatgpt": {
+				if (content == "") {
+					msg.reply("请按照指定格式输入指令")
+					break
+				}
 				async function getAnswer(question) {
 					let answer = await bot.chatbot.ask(question);
 					msg.reply(answer);
@@ -44,6 +49,10 @@ bot.on("message", function (msg) {
 				break
 			}
 			case "translate": {
+				if (content.split(" ").length < 2) {
+					msg.reply("请按照指定格式输入指令")
+					break
+				}
 				// e.g. /translate en 你好
 				let tgt = content.split(" ")[0]
 				let text = content.split(" ").slice(1).join(" ")
@@ -59,13 +68,14 @@ bot.on("message", function (msg) {
 			}
 			case "help": {
 				let res = "我是一个 QQ 机器人，你可以使用以下的命令来与我交互：\n\n"
-						+ "/chatgpt: 调用 ChatGPT 进行聊天 e.g. /chatgpt 你好\n"
-						+ "/chatgpt-reset: 重置 ChatGPT 对话 e.g. /chatgpt-reset\n"
-						+ "/anonymous: 私聊 Bot 实现在群聊中匿名发言 e.g. /anonymous 1234567890 这是一条匿名消息\n"
-						+ "/translate: 自动识别源语言，翻译到指定语言 e.g. /translate en 你好\n"
-						+ "/help: 显示帮助\n"
-						+ "/quit: 退出\n\n"
-						+ "更多功能正在开发中...敬请期待！"	
+						+ "👉 /chatgpt: 调用 ChatGPT 进行聊天 e.g. /chatgpt 你好\n"
+						+ "👉 /chatgpt-reset: 重置 ChatGPT 对话 e.g. /chatgpt-reset\n"
+						+ "👉 /anonymous: 私聊 Bot 实现在群聊中匿名发言 e.g. /anonymous 1234567890 这是一条匿名消息\n"
+						+ "👉 /translate: 自动识别源语言，翻译到指定语言 e.g. /translate en 你好\n"
+						+ "👉 /draw: 调用 DALL·E 2 文本生成图片 e.g. /draw A teddy bear playing soccer at Time Square\n"
+						+ "👉 /help: 显示帮助\n"
+						+ "👉 /quit: 退出\n\n"
+						+ "更多功能正在开发中...敬请期待！"
 				msg.reply(res)
 				break
 			}
@@ -76,13 +86,42 @@ bot.on("message", function (msg) {
 					await bot.logout()
 				}
 				Quit()
+				break
 			}
- 			// default: {
-			// 	// 群消息
-			// 	if (msg.message_type == "group") {
-			// 		msg.reply("未知指令")
-			// 	}
-			// }
+ 			case "draw": {
+				if (content == "") {
+					msg.reply("请输入文本")
+					break
+				}
+				// DALL·E 2 文本生成图片
+				const getDalle2Images = async (caption) => {
+					// Call the Dall-e 2 API
+					const response = await bot.dalle.generate(caption);
+
+					// If Dall-e 2 couldn't generate images from the given caption
+					if (!response) {
+						console.error(
+							"Dall-e 2 couldn't generate images based upon the given caption."
+						);
+						return null;
+					}
+
+					// Get the image array from the response object
+					const { data } = response;
+
+					// Return the image array
+					return data;
+				};
+				async function diffusion() {
+					const data = await getDalle2Images(content);
+					if (data) {
+						// console.log(data[0].generation.image_path)
+						msg.reply(segment.image(data[0].generation.image_path))
+					}
+				}
+				diffusion()
+				break
+			}
 		}
 	}
 })
@@ -119,3 +158,7 @@ bot.on("message.group", function (msg) {
 		// TODO
 	}
 })
+
+}
+
+export { cmd }

@@ -1,14 +1,16 @@
 "use strict"
-const { createClient } = require("oicq")
-// open config.json
-const config = require("./config.json")
+import { createClient } from "oicq"
+import config from "./config.json" assert {type: 'json'};
 
 const account = config.Account
-
 const bot = createClient(account)
-const cgpt = require('chatgpt-lib');
+
+import cgpt from 'chatgpt-lib'
+import { Dalle } from "node-dalle2"
 const chatbot = new cgpt.ChatGPT(config);
+const dalle = new Dalle({ apiKey: config.Dalle2Token });
 bot.chatbot = chatbot
+bot.dalle = dalle
 
 bot
 .on("system.login.qrcode", function (e) {
@@ -19,14 +21,16 @@ bot
 })
 .login()
 
-exports.bot = bot
+export { bot }
 
 // template plugins
-require("./plugins/plugin-hello") //hello world
-require("./plugins/plugin-image") //发送图文和表情
-require("./plugins/plugin-request") //加群和好友
-require("./plugins/plugin-online") //监听上线事件
-require("./plugins/plugin-cmd") //命令行
+import { hello } from "./plugins/plugin-hello.js"   //hello world
+import { image } from "./plugins/plugin-image.js"   //发送图文和表情
+import { social } from "./plugins/plugin-social.js" //加群和好友
+import { online } from "./plugins/plugin-online.js"  //监听上线事件
+import { cmd } from "./plugins/plugin-cmd.js"     //命令行
+
+cmd()
 
 process.on("unhandledRejection", (reason, promise) => {
 	console.log('Unhandled Rejection at:', promise, 'reason:', reason)

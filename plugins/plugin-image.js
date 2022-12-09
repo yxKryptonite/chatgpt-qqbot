@@ -1,7 +1,8 @@
 "use strict"
-const { segment } = require("oicq")
-const { bot } = require("../index")
+import { segment } from "oicq"
+import { bot } from "../index.js"
 
+function image() {
 // 回复图片
 bot.on("message", function (msg) {
 	if (msg.raw_message === "image")
@@ -17,3 +18,7 @@ bot.on("message", function (msg) {
 			"\ntwo faces"
 		])
 })
+
+}
+
+export { image }
