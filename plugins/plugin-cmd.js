@@ -10,11 +10,11 @@ const { bot } = require("../index")
  * * 已实现的指令：
  * - /chatgpt: 调用 ChatGPT 进行聊天 (可用 py 和 js 接口) e.g. /chatgpt 你好
  * - /chatgpt-reset: 重置 ChatGPT 对话 e.g. /chatgpt-reset
+ * - /anonymous: 私聊 Bot 实现在群聊中匿名发言 e.g. /anonymous 1234567890 这是一条匿名消息
+ * - /translate: 自动识别源语言，翻译到指定语言 e.g. /translate en 你好
+ * - /help: 显示帮助信息
  * 
  * * 计划实现的指令：
- * - /anonymous: 在某个群聊中匿名发言 e.g. /anonymous 1234567890 这是一条匿名消息
- * - /translate: 翻译 e.g. /translate en 你好
- * - /help: 显示帮助
  * - 多模态信息，如
  * 		- /image: 发送图片
  * 		- /video: 发送视频
@@ -55,6 +55,16 @@ bot.on("message", function (msg) {
 				}
 				getAnswer(tgt, text);
 				break
+			}
+			case "help": {
+				let res = "我是一个 QQ 机器人，你可以使用以下的命令来与我交互：\n\n"
+						+ "/chatgpt: 调用 ChatGPT 进行聊天 e.g. /chatgpt 你好\n"
+						+ "/chatgpt-reset: 重置 ChatGPT 对话 e.g. /chatgpt-reset\n"
+						+ "/anonymous: 私聊 Bot 实现在群聊中匿名发言 e.g. /anonymous 1234567890 这是一条匿名消息\n"
+						+ "/translate: 自动识别源语言，翻译到指定语言 e.g. /translate en 你好\n"
+						+ "/help: 显示帮助\n\n"
+						+ "更多功能正在开发中...敬请期待！"	
+				msg.reply(res)
 			}
 			default: {
 				// 群消息
