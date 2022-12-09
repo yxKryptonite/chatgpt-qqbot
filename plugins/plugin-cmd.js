@@ -13,6 +13,7 @@ const { bot } = require("../index")
  * - /anonymous: 私聊 Bot 实现在群聊中匿名发言 e.g. /anonymous 1234567890 这是一条匿名消息
  * - /translate: 自动识别源语言，翻译到指定语言 e.g. /translate en 你好
  * - /help: 显示帮助信息
+ * - /quit: 退出
  * 
  * * 计划实现的指令：
  * - 多模态信息，如
@@ -62,16 +63,26 @@ bot.on("message", function (msg) {
 						+ "/chatgpt-reset: 重置 ChatGPT 对话 e.g. /chatgpt-reset\n"
 						+ "/anonymous: 私聊 Bot 实现在群聊中匿名发言 e.g. /anonymous 1234567890 这是一条匿名消息\n"
 						+ "/translate: 自动识别源语言，翻译到指定语言 e.g. /translate en 你好\n"
-						+ "/help: 显示帮助\n\n"
+						+ "/help: 显示帮助\n"
+						+ "/quit: 退出\n\n"
 						+ "更多功能正在开发中...敬请期待！"	
 				msg.reply(res)
+				break
 			}
-			default: {
-				// 群消息
-				if (msg.message_type == "group") {
-					msg.reply("未知指令")
+			case "quit": {
+				// 退出
+				async function Quit() {
+					await msg.reply("已退出")
+					await bot.logout()
 				}
+				Quit()
 			}
+ 			// default: {
+			// 	// 群消息
+			// 	if (msg.message_type == "group") {
+			// 		msg.reply("未知指令")
+			// 	}
+			// }
 		}
 	}
 })
