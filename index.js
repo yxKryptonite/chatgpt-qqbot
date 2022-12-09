@@ -22,11 +22,11 @@ bot
 exports.bot = bot
 
 // template plugins
-require("./plugin-hello") //hello world
-require("./plugin-image") //发送图文和表情
-require("./plugin-request") //加群和好友
-require("./plugin-online") //监听上线事件
-require("./plugin-cmd") //命令行
+require("./plugins/plugin-hello") //hello world
+require("./plugins/plugin-image") //发送图文和表情
+require("./plugins/plugin-request") //加群和好友
+require("./plugins/plugin-online") //监听上线事件
+require("./plugins/plugin-cmd") //命令行
 
 process.on("unhandledRejection", (reason, promise) => {
 	console.log('Unhandled Rejection at:', promise, 'reason:', reason)
