@@ -80,7 +80,8 @@ bot.on("message.private", function (msg) {
 				let text = content.split(" ").slice(1).join(" ")
 				console.log(group_id, text)
 				async function send(group_id, text) {
-					await bot.sendGroupMsg(group_id, text, true)
+					let group = await bot.pickGroup(group_id)
+					group.sendMsg(text)
 				}
 				send(group_id, text)
 			}
