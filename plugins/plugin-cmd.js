@@ -59,11 +59,11 @@ bot.on("message", function (msg) {
 				let text = content.split(" ").slice(1).join(" ")
 				// bing-translate-api
 				
-				async function getAnswer(tgt, text) {
+				async function getTranslation(tgt, text) {
 					let answer = await translate(text, null, tgt, true)
 					msg.reply(answer.translation);
 				}
-				getAnswer(tgt, text);
+				getTranslation(tgt, text);
 				break
 			}
 			case "help": {

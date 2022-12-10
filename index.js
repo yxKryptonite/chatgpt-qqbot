@@ -24,11 +24,11 @@ bot
 export { bot }
 
 // template plugins
-import { hello } from "./plugins/plugin-hello.js"   //hello world
-import { image } from "./plugins/plugin-image.js"   //发送图文和表情
-import { social } from "./plugins/plugin-social.js" //加群和好友
-import { online } from "./plugins/plugin-online.js"  //监听上线事件
-import { cmd } from "./plugins/plugin-cmd.js"     //命令行
+import { hello } from "./plugins/plugin-hello.js"   // hello world
+import { image } from "./plugins/plugin-image.js"   // 发送图文和表情
+import { social } from "./plugins/plugin-social.js" // 加群和好友
+import { online } from "./plugins/plugin-online.js" // 监听上线事件
+import { cmd } from "./plugins/plugin-cmd.js"       // 命令行
 
 cmd()
 
