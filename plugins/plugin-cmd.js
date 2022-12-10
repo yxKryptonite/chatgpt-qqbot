@@ -38,8 +38,13 @@ bot.on("message", function (msg) {
 					break
 				}
 				async function getAnswer(question) {
-					let answer = await bot.chatbot.ask(question);
-					msg.reply(answer);
+					try {
+						let answer = await bot.chatbot.ask(question);
+						msg.reply(answer);
+					} catch (e) {
+						msg.reply("服务出现问题，请稍后再试");
+						console.error(e);
+					}
 				}
 				getAnswer(content);
 				break
@@ -96,7 +101,14 @@ bot.on("message", function (msg) {
 				// DALL·E 2 文本生成图片
 				const getDalle2Images = async (caption) => {
 					// Call the Dall-e 2 API
-					const response = await bot.dalle.generate(caption);
+					let response = null;
+					try {
+						response = await bot.dalle.generate(caption); 
+					} catch (e) {
+						msg.reply("服务出现问题，请稍后再试")
+						console.error(e)
+						return null
+					}
 
 					// If Dall-e 2 couldn't generate images from the given caption
 					if (!response) {
