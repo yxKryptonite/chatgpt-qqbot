@@ -7,10 +7,11 @@
 1. 安装 [Node.js](https://nodejs.org/) 14以上版本  
 2. clone 到本地并安装依赖
     ```bash
-    npm i
-    pip install -r requirements.txt
+    git clone git@github.com:yxKryptonite/chatgpt-qqbot.git
+    cd chatgpt-qqbot
+    sh setup.sh
     ```
-3. 创建 `config.json` ，填入你的 QQ 号、[ChatGPT session token](https://github.com/mbroton/chatgpt-api#how-to-acquire-session-key) 以及 [DALL·E 2 bearer token](https://github.com/1998code/DALLE-2-App/issues/13) 。形如：
+3. 在创建的 `config.json` 中填入你的 QQ 号、[ChatGPT session token](https://github.com/mbroton/chatgpt-api#how-to-acquire-session-key) 以及 [DALL·E 2 bearer token](https://github.com/1998code/DALLE-2-App/issues/13) 。形如：
 
     ```json
     {
@@ -22,9 +23,7 @@
 
 4. 执行 `npm run dev` 启动程序
 
-**注意**：该 Bot 无法长时间运行
-
-----
+## Credits
 
 <!-- > 如果你是初学者，建议通过下面的资料提升自己：  
 [JavaScript语言基础](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript) / [现代JavaScript教程](https://zh.javascript.info)  

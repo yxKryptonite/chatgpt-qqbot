@@ -2,7 +2,7 @@
 import { bot } from "../index.js"
 
 function social() {
-// 同意好友申请
+    // 同意好友申请
     bot.on("request.friend", e => e.approve())
 
     // 同意群邀请
