@@ -31,4 +31,4 @@
 [5分钟上手TypeScript](https://www.tslang.cn/docs/handbook/typescript-in-5-minutes.html)  
 [优秀npm三方库集合](https://github.com/sindresorhus/awesome-nodejs)  -->
 
-Thanks for the [oicq template](https://github.com/takayama-lily/oicq-template) and [@rawandahmad698](https://github.com/rawandahmad698) for the original [ChatGPT python dependency](https://github.com/rawandahmad698/PyChatGPT).
+Thanks for [oicq template](https://github.com/takayama-lily/oicq-template) and [chatgpt-lib](https://github.com/Mix-Anik/chatgpt-lib).
