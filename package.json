@@ -11,9 +11,10 @@
   "license": "MIT",
   "dependencies": {
     "bing-translate-api": "^2.6.0",
-    "chatgpt-lib": "^0.3.0",
+    "chatgpt": "^3.3.2",
     "node-dalle2": "^1.2.1",
-    "oicq": "^2.2.0"
+    "oicq": "^2.2.0",
+    "puppeteer": "^19.4.1"
   },
   "devDependencies": {
     "@types/node": "^16.6.1"

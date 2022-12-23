@@ -38,9 +38,19 @@ function cmd() {
 						break
 					}
 					async function getAnswer(question) {
+						let answer;
 						try {
-							let answer = await bot.chatbot.ask(question);
-							msg.reply(answer);
+							if (bot.conversation == null) {
+								answer = await bot.chatbot.sendMessage(question);
+							}
+							else {
+								answer = await bot.chatbot.sendMessage(question, {
+									conversationId: bot.conversation.conversationId,
+  									parentMessageId: bot.conversation.messageId
+								});
+							}
+							bot.conversation = answer;
+							msg.reply(answer.response);
 						} catch (e) {
 							msg.reply("服务出现问题，请稍后再试");
 							console.error(e);
@@ -50,7 +60,7 @@ function cmd() {
 					break
 				}
 				case "chatgpt-reset": {
-					bot.chatbot.resetThread()
+					bot.conversation = null;
 					msg.reply("已重置 ChatGPT 对话")
 					break
 				}
