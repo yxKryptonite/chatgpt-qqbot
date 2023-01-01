@@ -34,7 +34,7 @@ function cmd() {
 			switch (cmd) {
 				case "chatgpt": {
 					if (content == "") {
-						msg.reply("请按照指定格式输入指令")
+						msg.reply("请按照指定格式输入指令", true)
 						break
 					}
 					async function getAnswer(question) {
@@ -50,9 +50,9 @@ function cmd() {
 								});
 							}
 							bot.conversation = answer;
-							msg.reply(answer.response);
+							msg.reply(answer.response, true);
 						} catch (e) {
-							msg.reply("服务出现问题，请稍后再试");
+							msg.reply("服务出现问题，请稍后再试", true);
 							console.error(e);
 						}
 					}
@@ -61,12 +61,12 @@ function cmd() {
 				}
 				case "chatgpt-reset": {
 					bot.conversation = null;
-					msg.reply("已重置 ChatGPT 对话")
+					msg.reply("已重置 ChatGPT 对话", true)
 					break
 				}
 				case "translate": {
 					if (content.split(" ").length < 2) {
-						msg.reply("请按照指定格式输入指令")
+						msg.reply("请按照指定格式输入指令", true)
 						break
 					}
 					// e.g. /translate en 你好
@@ -76,7 +76,7 @@ function cmd() {
 					
 					async function getTranslation(tgt, text) {
 						let answer = await translate(text, null, tgt, true)
-						msg.reply(answer.translation);
+						msg.reply(answer.translation, true);
 					}
 					getTranslation(tgt, text);
 					break
@@ -105,7 +105,7 @@ function cmd() {
 				}
 				case "draw": {
 					if (content == "") {
-						msg.reply("请输入文本")
+						msg.reply("请输入文本", true)
 						break
 					}
 					// DALL·E 2 文本生成图片
@@ -115,7 +115,7 @@ function cmd() {
 						try {
 							response = await bot.dalle.generate(caption); 
 						} catch (e) {
-							msg.reply("服务出现问题，请稍后再试")
+							msg.reply("服务出现问题，请稍后再试", true)
 							console.error(e)
 							return null
 						}
