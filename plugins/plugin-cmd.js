@@ -11,9 +11,9 @@ import { translate } from 'bing-translate-api';
  * * 已实现的指令：
  * - /chatgpt: 调用 ChatGPT 进行聊天 (可用 py 和 js 接口) e.g. /chatgpt 你好
  * - /chatgpt-reset: 重置 ChatGPT 对话 e.g. /chatgpt-reset
- * - /anonymous: 私聊 Bot 实现在群聊中匿名发言 e.g. /anonymous 1234567890 这是一条匿名消息
- * - /translate: 自动识别源语言，翻译到指定语言 e.g. /translate en 你好
- * - /draw: 调用 DALL·E 2 文本生成图片 e.g. /draw A teddy bear playing soccer at Time Square
+//  * - /anonymous: 私聊 Bot 实现在群聊中匿名发言 e.g. /anonymous 1234567890 这是一条匿名消息
+//  * - /translate: 自动识别源语言，翻译到指定语言 e.g. /translate en 你好
+//  * - /draw: 调用 DALL·E 2 文本生成图片 e.g. /draw A teddy bear playing soccer at Time Square
  * - /help: 显示帮助信息
  * - /quit: 退出
  * 
@@ -45,12 +45,11 @@ function cmd() {
 							}
 							else {
 								answer = await bot.chatbot.sendMessage(question, {
-									conversationId: bot.conversation.conversationId,
-  									parentMessageId: bot.conversation.messageId
+  									parentMessageId: bot.conversation.id
 								});
 							}
 							bot.conversation = answer;
-							msg.reply(answer.response, true);
+							msg.reply(answer.text, true);
 						} catch (e) {
 							msg.reply("服务出现问题，请稍后再试", true);
 							console.error(e);
@@ -85,9 +84,9 @@ function cmd() {
 					let res = "我是一个 QQ 机器人，你可以使用以下的命令来与我交互：\n\n"
 							+ "👉 /chatgpt: 调用 ChatGPT 进行聊天 e.g. /chatgpt 你好\n"
 							+ "👉 /chatgpt-reset: 重置 ChatGPT 对话 e.g. /chatgpt-reset\n"
-							+ "👉 /anonymous: 私聊 Bot 实现在群聊中匿名发言 e.g. /anonymous 1234567890 这是一条匿名消息\n"
-							+ "👉 /translate: 自动识别源语言，翻译到指定语言 e.g. /translate en 你好\n"
-							+ "👉 /draw: 调用 DALL·E 2 文本生成图片 e.g. /draw A teddy bear playing soccer at Time Square\n"
+							// + "👉 /anonymous: 私聊 Bot 实现在群聊中匿名发言 e.g. /anonymous 1234567890 这是一条匿名消息\n"
+							// + "👉 /translate: 自动识别源语言，翻译到指定语言 e.g. /translate en 你好\n"
+							// + "👉 /draw: 调用 DALL·E 2 文本生成图片 e.g. /draw A teddy bear playing soccer at Time Square\n"
 							+ "👉 /help: 显示帮助\n"
 							+ "👉 /quit: 退出\n\n"
 							+ "更多功能正在开发中...敬请期待！"

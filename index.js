@@ -5,12 +5,10 @@ import config from "./config.json" assert {type: 'json'};
 const account = config.Account
 const bot = createClient(account)
 
-import { ChatGPTAPIBrowser } from 'chatgpt'
-const api = new ChatGPTAPIBrowser({
-    email: config.Email,
-    password: config.Password
+import { ChatGPTAPI } from 'chatgpt'
+const api = new ChatGPTAPI({
+    apiKey: config.API_KEY
 })
-api.initSession()
 
 import { Dalle } from "node-dalle2"
 const dalle = new Dalle({ apiKey: config.Dalle2Token });
