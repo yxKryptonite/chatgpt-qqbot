@@ -7,11 +7,13 @@
 0. 挂上非大陆香港地区的 🪜 
 1. 安装 [Node.js](https://nodejs.org/) 14以上版本。
 2. clone 到本地并安装依赖
+   
     ```bash
     git clone git@github.com:yxKryptonite/chatgpt-qqbot.git
     cd chatgpt-qqbot
     sh setup.sh
     ```
+    
 3. 在创建的 `config.json` 中填入你的 QQ 账密、代理服务器端口和 OPENAI API KEY。
 4. 执行 `npm run dev` 启动程序。
 5. 向你的机器人发送 `/help` 可查看所有功能。
