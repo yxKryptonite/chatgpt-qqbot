@@ -12,8 +12,7 @@
     cd chatgpt-qqbot
     sh setup.sh
     ```
-3. 在创建的 `config.json` 中填入你的 QQ 账密和 OPENAI API KEY。
-
+3. 在创建的 `config.json` 中填入你的 QQ 账密、代理服务器端口和 OPENAI API KEY。
 4. 执行 `npm run dev` 启动程序。
 5. 向你的机器人发送 `/help` 可查看所有功能。
 
