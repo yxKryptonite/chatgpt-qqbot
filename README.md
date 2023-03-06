@@ -1,6 +1,6 @@
 # ChatGPT QQBot
 
-一个基于 [oicq](https://github.com/takayama-lily/oicq) 和 [ChatGPT](https://chat.openai.com/) 的 QQ 聊天机器人。
+一个基于 [icqq](https://github.com/icqqjs/icqq) 和 [ChatGPT](https://chat.openai.com/) 的 QQ 聊天机器人。
 
 ## Usage
 
@@ -12,9 +12,9 @@
     cd chatgpt-qqbot
     sh setup.sh
     ```
-3. 在创建的 `config.json` 中填入你的 QQ 号和 OPENAI API KEY。
+3. 在创建的 `config.json` 中填入你的 QQ 账密和 OPENAI API KEY。
 
-4. 执行 `npm run dev` 启动程序后，扫码登录 QQ。
+4. 执行 `npm run dev` 启动程序。
 5. 向你的机器人发送 `/help` 可查看所有功能。
 
 ## Credits
@@ -25,4 +25,4 @@
 [5分钟上手TypeScript](https://www.tslang.cn/docs/handbook/typescript-in-5-minutes.html)  
 [优秀npm三方库集合](https://github.com/sindresorhus/awesome-nodejs)  -->
 
-Thanks for [oicq template](https://github.com/takayama-lily/oicq-template) and [chatgpt-api](https://github.com/transitive-bullshit/chatgpt-api).
+Thanks for [oicq template](https://github.com/takayama-lily/oicq-template), [icqq](https://github.com/icqqjs/icqq) and [chatgpt-api](https://github.com/transitive-bullshit/chatgpt-api).
